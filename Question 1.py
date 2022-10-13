@@ -5,17 +5,18 @@ def findSum(arr):
     return reduce(lambda a, b: a+b, arr)
 
 
+
 if __name__ == "__main__":
-    arrStr = input("please enter values to add : ")
-    arr = arrStr.strip().split()
-    for i, val in enumerate(arr):
+    size = int(input("Enter the size of the array : "))
+    def verify(val):
         try:
-            int(val)
-            arr[i] = int(val)
-            continue
+            return int(val)
         except:
-            print(f"Array can only contain numbers found '{val}' at {i}")
-
+            print(f"Array can only contain numbers. Found '{val}'")
             exit()
+    try:
+        arr = list(map(verify, input().split()))
+    except:
+        exit()
 
-    print(findSum(arr))
+    print(findSum(arr[:size]))
