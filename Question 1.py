@@ -7,7 +7,7 @@ def findSum(arr):
 
 if __name__ == "__main__":
     arrStr = input("please enter values to add : ")
-    arr = arrStr.strip().split(" ")
+    arr = arrStr.strip().split()
     for i, val in enumerate(arr):
         try:
             int(val)

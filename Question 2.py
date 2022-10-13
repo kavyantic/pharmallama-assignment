@@ -12,14 +12,14 @@ def find_lowest_positive_integer(arr):
             
 def main():
     arrStr = input("please enter array values : ")
-    arr = arrStr.strip().split(" ")
+    arr = arrStr.strip().split()
     for i,val in enumerate(arr):
         try:
             int(val)
             arr[i] = int(val)
             continue
         except:
-            print(f"Array can only contain numbers found '{val}' at {i}")
+            print(f"Array can only contain numbers, found '{val}' at {i}")
             return
     print(find_lowest_positive_integer(arr))
 
