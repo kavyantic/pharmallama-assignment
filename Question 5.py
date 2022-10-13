@@ -41,6 +41,7 @@ def geo_stationary_trajectory(h, r):
     return trajectory
 
 
+
 def predict_position(x, y, z, vx, vy, vz, dt,r):
     """
     Calculate the position of an object after a time dt, given its
