@@ -15,50 +15,41 @@ def factorial(x):
 
 
 def quadratic(a, b, c):
-    a = int(a)
-    b = int(b)
-    c = int(c)
+    # edited 
+   
     discRoot = math.sqrt(b * b - 4 * a * c)
     root1 = (-b + discRoot) / (2 * a)
     root2 = (-b - discRoot) / (2 * a)
-    # Return the solutions root1, root2
     return root1, root2
 
 
 @app.route('/', methods=['GET'])
 def home():
     return "<h1>Online Math Functions</h1><p>This site is a prototype API for computing solutions to various math problems.</p>"
-# This endpoint computes factorial of given number
 
 
 @app.route('/api/v1/resources/compute-factorial', methods=['GET'])
 def endpoint_compute_factorial():
 
-    # Retrieve the number from url parameter
     number = request.args.get("number", None)
-    # For debugging
     print(f"got number {number}")
     response = {}
-    # Check if user sent a number at all
     if not number:
         response["ERROR"] = "no number found, please send a number."
-    # Check if the user entered a string not a integer
     elif not str(number).isdigit():
         response["ERROR"] = "number can't be string."
-    # Now the user entered a valid number
     else:
         response["input integer"] = f"{number}"
         response["factorial"] = factorial(number)
-    # Return the response in json format
     return jsonify(response)
-    # This endpoint finds the real solutions to a quadratic
 
 
-@app.route('/api/v1/resources/solve-quadratic', methods=['POST'])
+# Since we are extracting payload from query parameters, GET method will do the job.
+@app.route('/api/v1/resources/solve-quadratic', methods=['GET'])
 def endpoint_solve_quadratic():
     response = {}
-
-    # Retrieve the numbers from post body
+    
+    # rewrote the validation code
     try:
         a = int(request.args.get('a'))
         b = int(request.args.get('b'))
@@ -77,17 +68,12 @@ def endpoint_solve_quadratic():
             response["ERROR"] = "numbers can't be string."
         return jsonify(response)
 
-    # For debugging
     print(f"got numbers {a}, {b}, {c}")
-    # Check if user sent a, b and c at all
 
-    # Now the user entered a valid number
     response["input integers"] = [a, b, c]
     response["factorial"] = quadratic(a, b, c)
-    # Return the response in json format
     return jsonify(response)
 
 
-# driver function
 if __name__ == '__main__':
     app.run(debug=True)
