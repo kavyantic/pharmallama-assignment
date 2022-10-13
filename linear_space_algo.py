@@ -1,4 +1,6 @@
+from distutils.log import error
 from functools import reduce
+from msilib.schema import Error
 
 def find_largest(arr):
     return reduce(lambda a,b:a if a>b else b,arr)
@@ -10,10 +12,23 @@ def find_lowest_positive_integer(arr):
         else:
             return v
 
-if __name__ == "__main__":
-    arr = [1,2,5,3,4]
+
+def main():
+    arrStr = input("please enter array values : ")
+    arr = arrStr.split(" ")
+    for i,val in enumerate(arr):
+        try:
+            int(val)
+            arr[i] = int(val)
+            continue
+        except:
+            print(f"Array can only contain numbers found '{val}' at {i}")
+            return
     print(find_lowest_positive_integer(arr))
 
+if __name__ == "__main__":
+    main()
+ 
 
         
 
