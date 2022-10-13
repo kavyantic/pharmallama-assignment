@@ -1,7 +1,21 @@
 from functools import reduce
 
-def findSum(arr):
-    return reduce(lambda a,b:a+b,arr)
 
-if __name__ =="__main__":
-    print(findSum([2,4,3,4,2,4,7,4]))
+def findSum(arr):
+    return reduce(lambda a, b: a+b, arr)
+
+
+if __name__ == "__main__":
+    arrStr = input("please values to add : ")
+    arr = arrStr.strip().split(" ")
+    for i, val in enumerate(arr):
+        try:
+            int(val)
+            arr[i] = int(val)
+            continue
+        except:
+            print(f"Array can only contain numbers found '{val}' at {i}")
+
+            exit()
+
+    print(findSum(arr))
