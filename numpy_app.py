@@ -80,6 +80,8 @@ def predict_position(x, y, z, vx, vy, vz, dt,r):
     vy = vy + ay * dt
     vz = vz + az * dt
     # Return position and velocity of the object
+
+    #edited
     return x,y,z,vx,vy,vz
    
 
@@ -141,6 +143,9 @@ def get_satellite_position(t, h, v):
     vy = v * np.cos(theta + w)
     vz = 0
     # Return numpy array of position and velocity and time since Epoch
+
+
+    # edited
     return [x, y, z], [vx, vy, vz], t0
 
 
