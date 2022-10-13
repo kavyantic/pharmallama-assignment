@@ -1,3 +1,4 @@
+import json
 from multiprocessing.sharedctypes import Value
 from flask import Flask, request, jsonify
 import math
@@ -55,12 +56,20 @@ def endpoint_compute_factorial():
 
 @app.route('/api/v1/resources/solve-quadratic', methods=['POST'])
 def endpoint_solve_quadratic():
+    response = {}
 
     # Retrieve the numbers from post body
     try:
         a = int(request.args.get('a'))
         b = int(request.args.get('b'))
         c = int(request.args.get('c'))
+        if 0 in [a, b, c]:
+            response["ERROR"] = "a,b and c cannot contain zeros"
+            return jsonify(response)
+        if (not ((b * b) >= (4 * a * c))):
+            response["ERROR"] = "b's square must be greater than (4 * a * c)"
+            return jsonify(response)
+
     except ValueError:
         if not a or not b or not c:
             response["ERROR"] = "Invalid input. Please send a, b and c"
@@ -70,9 +79,7 @@ def endpoint_solve_quadratic():
 
     # For debugging
     print(f"got numbers {a}, {b}, {c}")
-    response = {}
     # Check if user sent a, b and c at all
-
 
     # Now the user entered a valid number
     response["input integers"] = [a, b, c]
