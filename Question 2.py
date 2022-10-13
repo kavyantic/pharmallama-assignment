@@ -11,16 +11,17 @@ def find_lowest_positive_integer(arr):
             return v
             
 def main():
-    arrStr = input("please enter array values : ")
-    arr = arrStr.strip().split()
-    for i,val in enumerate(arr):
+    def verify(val):
         try:
-            int(val)
-            arr[i] = int(val)
-            continue
+            return int(val)
         except:
-            print(f"Array can only contain numbers, found '{val}' at {i}")
-            return
+            print(f"Array can only contain numbers. Found '{val}'")
+            exit()
+    try:
+        arr = list(map(verify, input().split()))
+    except:
+        exit()
+
     print(find_lowest_positive_integer(arr))
 
 if __name__ == "__main__":
