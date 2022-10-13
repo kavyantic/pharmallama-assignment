@@ -15,7 +15,7 @@ def find_lowest_positive_integer(arr):
 
 def main():
     arrStr = input("please enter array values : ")
-    arr = arrStr.split(" ")
+    arr = arrStr.strip().split(" ")
     for i,val in enumerate(arr):
         try:
             int(val)
