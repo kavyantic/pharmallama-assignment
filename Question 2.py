@@ -1,6 +1,4 @@
-from distutils.log import error
 from functools import reduce
-from msilib.schema import Error
 
 def find_largest(arr):
     return reduce(lambda a,b:a if a>b else b,arr)
@@ -11,8 +9,7 @@ def find_lowest_positive_integer(arr):
             continue
         else:
             return v
-
-
+            
 def main():
     arrStr = input("please enter array values : ")
     arr = arrStr.strip().split(" ")
