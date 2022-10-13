@@ -15,6 +15,7 @@ if __name__ == "__main__":
             print(f"Array can only contain numbers. Found '{val}'")
             exit()
     try:
+        print("enter the values to add : ")
         arr = list(map(verify, input().split()))
     except:
         exit()
